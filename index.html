@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Controle Financeiro</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#007bff">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f0f4f8;
+      --bg-gradient: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+      --text: #222;
+      --card-bg: #fff;
+      --primary: #007bff;
+      --primary-hover: #0056b3;
+    }
+
+    [data-theme="dark"] {
+      --bg: #1f2937;
+      --bg-gradient: linear-gradient(135deg, #1f2937, #111827);
+      --text: #eee;
+      --card-bg: #2d3748;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text);
+      transition: opacity 0.8s ease;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 2.8em;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.2em;
+      max-width: 600px;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      font-size: 1.1em;
+      margin: 20px 10px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      margin-top: 30px;
+      display: none;
+    }
+
+    .card input {
+      width: 100%;
+      padding: 12px 15px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      font-size: 1em;
+    }
+
+    .link-pequeno {
+      font-size: 0.9em;
+      color: var(--primary);
+      text-decoration: none;
+      margin-top: 10px;
+      display: inline-block;
+    }
+
+    .link-pequeno:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <h1>Bem-vindo ao Controle Financeiro</h1>
+    <p>Gerencie seu dinheiro com gráficos inteligentes, metas mensais e muito estilo.</p>
+    <div>
+      <button class="btn" id="btnLogin">Entrar</button>
+      <button class="btn" id="btnCadastro">Cadastrar</button>
+    </div>
+  </section>
+
+  <div id="formLogin" class="card">
+    <h2>Entrar</h2>
+    <input type="text" id="usuarioLogin" placeholder="Nome de usuário ou telefone" />
+    <input type="password" id="senhaLogin" placeholder="Senha" />
+    <a href="#" id="esqueciSenha" class="link-pequeno">Esqueci minha senha</a>
+    <button class="btn" id="entrarBtn">Entrar</button>
+  </div>
+
+  <div id="formCadastro" class="card">
+    <h2>Cadastrar</h2>
+    <input type="text" id="novoUsuario" placeholder="Novo usuário ou telefone" />
+    <input type="password" id="novaSenha" placeholder="Nova senha" />
+    <button class="btn" id="cadastrarBtn">Cadastrar</button>
+  </div>
+
+  <div id="formEsqueciSenha" class="card">
+    <h2>Recuperar Senha</h2>
+    <input type="text" id="recuperarUsuario" placeholder="Usuário ou telefone" />
+    <button class="btn" id="recuperarBtn">Enviar nova senha por SMS</button>
+  </div>
+
+  <script>
+    document.documentElement.setAttribute("data-theme", localStorage.getItem("tema") || "light");
+
+    const btnLogin = document.getElementById("btnLogin");
+    const btnCadastro = document.getElementById("btnCadastro");
+    const formLogin = document.getElementById("formLogin");
+    const formCadastro = document.getElementById("formCadastro");
+    const formEsqueci = document.getElementById("formEsqueciSenha");
+    const esqueceu = document.getElementById("esqueciSenha");
+
+    btnLogin.addEventListener("click", () => {
+      formCadastro.style.display = "none";
+      formEsqueci.style.display = "none";
+      formLogin.style.display = "block";
+      formLogin.scrollIntoView({ behavior: "smooth" });
+    });
+
+    btnCadastro.addEventListener("click", () => {
+      formLogin.style.display = "none";
+      formEsqueci.style.display = "none";
+      formCadastro.style.display = "block";
+      formCadastro.scrollIntoView({ behavior: "smooth" });
+    });
+
+    esqueceu.addEventListener("click", (e) => {
+      e.preventDefault();
+      formLogin.style.display = "none";
+      formEsqueci.style.display = "block";
+      formEsqueci.scrollIntoView({ behavior: "smooth" });
+    });
+
+    document.getElementById("entrarBtn").addEventListener("click", () => {
+      const user = document.getElementById("usuarioLogin").value;
+      const pass = document.getElementById("senhaLogin").value;
+      const saved = JSON.parse(localStorage.getItem(user));
+      if (saved && saved.senha === pass) {
+        document.body.classList.add("fade-out");
+        setTimeout(() => window.location.href = "app.html", 800);
+      } else {
+        alert("Usuário ou senha inválidos");
+      }
+    });
+
+    document.getElementById("cadastrarBtn").addEventListener("click", () => {
+      const user = document.getElementById("novoUsuario").value;
+      const pass = document.getElementById("novaSenha").value;
+      localStorage.setItem(user, JSON.stringify({ senha: pass }));
+      alert("Cadastro feito com sucesso!");
+      formCadastro.style.display = "none";
+    });
+
+    document.getElementById("recuperarBtn").addEventListener("click", () => {
+      const user = document.getElementById("recuperarUsuario").value;
+      if (localStorage.getItem(user)) {
+        alert("SMS enviado para redefinir sua senha!");
+        formEsqueci.style.display = "none";
+      } else {
+        alert("Usuário não encontrado.");
+      }
+    });
+  </script>
+
+</body>
+</html>

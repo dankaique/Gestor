@@ -1,0 +1,223 @@
+.dashboard-btn {
+position: fixed;
+top: 20px;
+left: 20px;
+width: 50px;
+height: 50px;
+border-radius: 50%;
+background-color: var(--primary);
+color: white;
+border: none;
+font-size: 20px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+z-index: 1000;
+cursor: pointer;
+}
+:root {
+--bg: #f5f7fa;
+--bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+--text: #333;
+--card-bg: white;
+--primary: #007bff;
+--primary-hover: #0056b3;
+--danger: #dc3545;
+--alert: #ffcc00;
+}
+
+[data-theme="dark"] {  
+  --bg: #1e1e2f;  
+  --bg-gradient: linear-gradient(135deg, #1e1e2f 0%, #2c3e50 100%);  
+  --text: #eee;  
+  --card-bg: #2c2f3a;  
+  --primary: #0d6efd;  
+  --primary-hover: #0a58ca;  
+  --danger: #ff6b6b;  
+  --alert: #ffd54f;  
+}  
+
+body {  
+  margin: 0;  
+  background: var(--bg-gradient);  
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
+  color: var(--text);  
+}  
+
+.theme-toggle {  
+  position: fixed;  
+  top: 20px;  
+  right: 20px;  
+  width: 50px;  
+  height: 50px;  
+  border-radius: 50%;  
+  background-color: var(--primary);  
+  color: white;  
+  border: none;  
+  font-size: 20px;  
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  
+  z-index: 1000;  
+  cursor: pointer;  
+}  
+
+.container {  
+  max-width: 9700px;  
+  margin: 40px auto;  
+  background: var(--card-bg);  
+  padding: 30px;  
+  border-radius: 20px;  
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);  
+}  
+
+h1 {  
+  text-align: center;  
+  margin-bottom: 20px;  
+}  
+
+.dashboard {  
+  display: flex;  
+  justify-content: space-between;  
+  gap: 15px;  
+  margin-bottom: 20px;  
+}  
+
+.card {  
+  flex: 1;  
+  padding: 20px;  
+  border-radius: 15px;  
+  background: var(--bg-gradient);  
+  color: var(--text);  
+  text-align: center;  
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);  
+}  
+
+form input, form select, form button, .filtros select {  
+  width: 100%;  
+  padding: 12px;  
+  margin: 6px 0;  
+  border-radius: 8px;  
+  border: 1px solid #ccc;  
+  font-size: 16px;  
+  background: var(--card-bg);  
+  color: var(--text);  
+}  
+
+ul {  
+  list-style-type: none;  
+  padding: 0;  
+  margin-top: 20px;  
+}  
+
+li {  
+  background: #e6e9ef;  
+  margin: 6px 0;  
+  padding: 12px;  
+  border-radius: 8px;  
+  color: var(--text);  
+  display: flex;  
+  justify-content: space-between;  
+}  
+
+[data-theme="dark"] li {  
+  background: #3a3f51;  
+}  
+
+.remove-btn {  
+  background: transparent;  
+  border: none;  
+  color: var(--danger);  
+  cursor: pointer;  
+}  
+
+.metas {  
+    
+  margin-top: 30px;  
+  display: grid;  
+  grid-template-columns: 1fr 1fr;  
+  gap: 12px;  
+}  
+
+.metas input {  
+  right: 2000px;  
+  padding: 14px;  
+  font-size: 9.9px;  
+  border-radius: 49px;  
+  border: 3px solid #ccc;  
+  background: var(--card-bg);  
+  color: var(--text);  
+}  
+
+.alerta {  
+  margin-top: 20px;  
+  padding: 15px;  
+  border-radius: 10px;  
+  font-weight: bold;  
+  text-align: center;  
+  display: none;  
+  animation: fadeIn 0.4s ease-in-out;  
+  border: 2px solid;  
+}  
+
+.alerta.gasto {  
+  background-color: #ff6b6b;  
+  color: white;  
+  border-color: #c62828;  
+}  
+
+.alerta.reserva {  
+  background-color: #4caf50;  
+  color: white;  
+  border-color: #2e7d32;  
+}  
+
+@keyframes fadeIn {  
+  from { opacity: 0; transform: translateY(-10px); }  
+  to { opacity: 1; transform: translateY(0); }  
+}  
+
+.export-area, .reset-area {  
+  margin-top: 10px;  
+  display: flex;  
+  gap: 10px;  
+}  
+
+.export-btn {  
+  flex: 1;  
+  background-color: var(--primary);  
+  color: white;  
+  border: none;  
+  padding: 12px;  
+  border-radius: 8px;  
+  font-weight: bold;  
+  cursor: pointer;  
+}  
+
+
+canvas {  
+  margin-top: 30px;  
+  max-width: 10%;  
+}
+
+.gerenciar-data-area {
+margin-top: 10px;
+text-align: center;
+}
+
+.lista-por-data h3 {
+margin-top: 15px;
+color: var(--texto-principal);
+}
+
+.lista-por-data p {
+padding: 4px 0;
+border-bottom: 1px solid #ccc;
+}
+
+.menu-opcoes {
+text-align: center;
+margin-top: 20px;
+}
+
+.menu-opcoes .export-btn {
+margin: 5px;
+width: 200px;
+}
+

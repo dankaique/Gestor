@@ -1,0 +1,70 @@
+<!DOCTYPE html>  <html lang="pt-BR" data-theme="light">  
+<head>  
+  <meta charset="UTF-8" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
+  <meta name="description" content="Controle financeiro pessoal com metas, gráficos e exportações.">  
+  <meta name="keywords" content="controle financeiro, finanças pessoais, orçamento, metas">  
+  <meta name="author" content="Finance">    <meta property="og:title" content="Controle Financeiro Pessoal">  
+  <meta property="og:description" content="Gerencie suas finanças com praticidade e visualize suas metas com gráficos.">  
+  <meta property="og:url" content="https://seusite.com">  
+  <meta property="og:type" content="website">    <meta name="twitter:card" content="summary_large_image">  
+  <meta name="twitter:title" content="Controle Financeiro Pessoal">  
+  <meta name="twitter:description" content="Gerencie suas finanças com praticidade e visualize metas com gráficos.">  
+  <meta name="twitter:image" content="URL_DA_IMAGEM.png">    <meta http-equiv="X-Content-Type-Options" content="nosniff">  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">    <title>Controle Financeiro</title>  
+  <link rel="icon" href="favicon.ico" type="image/x-icon">  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />  
+  <link rel="stylesheet" href="estilo.css">    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  </head>  
+<body>    <button class="dashboard-btn" onclick="window.location.href='dashboards.html'">  
+    <i class="fas fa-chart-bar"></i>  
+  </button>  
+  <button class="theme-toggle" onclick="alternarTema()"><i class="fas fa-moon"></i></button>    <div class="container">  
+    <h1><i class="fas fa-wallet"></i> Controle Financeiro</h1>  <div class="dashboard">  
+  <div class="card" id="totalSaldo">Saldo Total: R$ 0.00</div>  
+  <div class="card" id="totalEntradas">Entradas: R$ 0.00</div>  
+  <div class="card" id="totalSaidas">Saídas: R$ 0.00</div>  
+</div>  
+
+<form id="form-transacao">  
+  <input type="text" id="descricao" placeholder="Descrição" required>  
+  <input type="number" id="valor" placeholder="Valor" required>  
+  <input type="text" id="categoria" placeholder="Categoria" required>  
+  <select id="tipo">  
+    <option value="entrada">Entrada</option>  
+    <option value="saida">Saída</option>  
+  </select>  
+  <button type="submit">Adicionar Transação</button>  
+</form>  
+
+<div class="metas">  
+  <input type="number" id="metaGasto" placeholder="Meta de gasto (R$)">  
+  <input type="number" id="metaReserva" placeholder="Meta de reserva (R$)">  
+</div>  
+<div class="alerta" id="alertaMeta"></div>  
+
+<ul id="lista"></ul>  
+
+<div id="gerenciamentoData" style="display: none; margin-top: 20px;">  
+  <h2><i class="fas fa-calendar-alt"></i> Transações por Data</h2>  
+  <div id="listaPorData" class="lista-por-data"></div>  
+</div>  
+
+<div class="menu-opcoes">  
+  <button class="export-btn" onclick="alternarMenuOpcoes()">  
+    <i class="fas fa-folder-open"></i> Menu de opções  
+  </button>  
+  <button class="export-btn" onclick="toggleGerenciamentoData()">  
+    <i class="fas fa-calendar-alt"></i> Gerenciar por Data  
+  </button>  
+
+  <div id="opcoesExtras" style="display: none; margin-top: 10px;">  
+    <button class="export-btn" id="exportarExcel"><i class="fas fa-file-excel"></i> Exportar Excel</button>  
+    <button class="export-btn" id="exportarPDF"><i class="fas fa-file-pdf"></i> Exportar PDF</button>  
+  </div>  
+</div>
+
+  </div>  <canvas id="graficoPizza"></canvas>
+<canvas id="graficoColuna"></canvas>
+
+  <script src="script.js"></script>  </body>  
+</html>
