@@ -220,9 +220,3 @@ margin-top: 20px;
 margin: 5px;
 width: 200px;
 }
-#logo {
-  width: 150px;  /* Ajuste o tamanho conforme necessário */
-  height: auto;
-  display: block;
-  margin: 0 auto;  /* Para centralizar */
-}
